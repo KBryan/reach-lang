@@ -1,6 +1,6 @@
 // Automatically generated with Reach 0.1.13
 pragma abicoder v2;
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.26;
 
 /**
  * @dev Interface of the ERC20 standard as defined in the EIP.
@@ -791,9 +791,9 @@ contract ReachContract is Stdlib {
     _ja.elem1 = _svs.v305;
     _ja.elem2 = _svs.v306;
     _ja.elem3 = payable(msg.sender);
-    _ja.elem4 = (uint256(1));
-    _ja.elem5 = (uint256(block.number));
-    _ja.elem6 = ((unsafeAdd(_svs.v305, _svs.v305)));
+    _ja.elem4 = uint256(1);
+    _ja.elem5 = uint256(block.number);
+    _ja.elem6 = (unsafeAdd(_svs.v305, _svs.v305));
     _reachl_3(_ja, _Memory);
     }
   function _reachi_2(T2 memory _a, Memory memory _Memory) internal  {
@@ -895,9 +895,9 @@ contract ReachContract is Stdlib {
     _ja.elem1 = _svs.v305;
     _ja.elem2 = _svs.v306;
     _ja.elem3 = _svs.v321;
-    _ja.elem4 = ((safeMod((safeAdd((_a.elem2), (safeSub(uint256(4), _svs.v374)))), uint256(3))));
-    _ja.elem5 = (uint256(block.number));
-    _ja.elem6 = (_svs.v334);
+    _ja.elem4 = (safeMod((safeAdd((_a.elem2), (safeSub(uint256(4), _svs.v374)))), uint256(3)));
+    _ja.elem5 = uint256(block.number);
+    _ja.elem6 = _svs.v334;
     _reachl_3(_ja, _Memory);
     }
   function _reachi_9(T2 memory _a, Memory memory _Memory) internal  {
@@ -940,36 +940,36 @@ contract ReachContract is Stdlib {
     Memory memory _Memory;
     _reachi_0(v650, _Memory);
     }
-  function _reachp_1(T2 calldata v656) external payable returns (bool) {
+  function _reachp_1(T2 calldata v653) external payable returns (bool) {
     Memory memory _Memory;
-    _reachi_1(v656, _Memory);
+    _reachi_1(v653, _Memory);
     }
-  function _reachp_2(T2 calldata v659) external payable returns (bool) {
+  function _reachp_2(T2 calldata v656) external payable returns (bool) {
     Memory memory _Memory;
-    _reachi_2(v659, _Memory);
+    _reachi_2(v656, _Memory);
     }
-  function _reachp_4(T4 calldata v662) external payable returns (bool) {
+  function _reachp_4(T4 calldata v659) external payable returns (bool) {
     Memory memory _Memory;
-    _reachi_4(v662, _Memory);
+    _reachi_4(v659, _Memory);
     }
-  function _reachp_5(T2 calldata v665) external payable returns (bool) {
+  function _reachp_5(T2 calldata v662) external payable returns (bool) {
     Memory memory _Memory;
-    _reachi_5(v665, _Memory);
+    _reachi_5(v662, _Memory);
     }
-  function _reachp_6(T7 calldata v668) external payable returns (bool) {
+  function _reachp_6(T7 calldata v665) external payable returns (bool) {
     Memory memory _Memory;
-    _reachi_6(v668, _Memory);
+    _reachi_6(v665, _Memory);
     }
-  function _reachp_7(T2 calldata v671) external payable returns (bool) {
+  function _reachp_7(T2 calldata v668) external payable returns (bool) {
     Memory memory _Memory;
-    _reachi_7(v671, _Memory);
+    _reachi_7(v668, _Memory);
     }
-  function _reachp_8(T0 calldata v677) external payable returns (bool) {
+  function _reachp_8(T0 calldata v671) external payable returns (bool) {
     Memory memory _Memory;
-    _reachi_8(v677, _Memory);
+    _reachi_8(v671, _Memory);
     }
-  function _reachp_9(T2 calldata v680) external payable returns (bool) {
+  function _reachp_9(T2 calldata v674) external payable returns (bool) {
     Memory memory _Memory;
-    _reachi_9(v680, _Memory);
+    _reachi_9(v674, _Memory);
     }
   }

@@ -1,6 +1,6 @@
 // Automatically generated with Reach 0.1.13
 pragma abicoder v2;
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.26;
 
 /**
  * @dev Interface of the ERC20 standard as defined in the EIP.
