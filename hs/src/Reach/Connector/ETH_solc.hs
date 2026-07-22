@@ -205,6 +205,9 @@ try_compile_sol solf cn (OP {..}) = do
               ])
             ])
             , ("viaIR", tj opIR)
+            -- solc >=0.8.20 defaults to shanghai, whose PUSH0 opcode is
+            -- rejected by pre-shanghai chains (and some alt-EVMs)
+            , ("evmVersion", "paris")
             , ("debug", object $
               [ ("revertStrings", "strip")
               , ("debugInfo", array ([]::[String]))
