@@ -11,9 +11,9 @@ import Network.HTTP.Client.Conduit (httpNoBody)
 import Network.HTTP.Client.TLS
 import Network.HTTP.Conduit
 import Network.HTTP.Simple (setRequestBodyJSON, setRequestMethod)
+import Reach.AST.Base (CompilationError (..), CompileErrorException (..))
 import Reach.CommandLine
 import Reach.Version
-import Reach.AST.Base (CompileErrorException(..), CompilationError(..))
 import System.Environment
 
 type Report = Either SomeException ()

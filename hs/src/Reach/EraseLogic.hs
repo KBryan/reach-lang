@@ -198,7 +198,10 @@ instance {-# OVERLAPS #-} Erase a => Erase (DLinExportBlock a) where
 instance Erase LLProg where
   el (LLProg llp_at llp_opts llp_parts llp_init llp_exports llp_views llv_apis llp_apis llp_events llp_step) =
     LLProg llp_at llp_opts llp_parts llp_init <$> el llp_exports <*> pure llp_views
-           <*> pure llv_apis <*> pure llp_apis <*> pure llp_events <*> el llp_step
+      <*> pure llv_apis
+      <*> pure llp_apis
+      <*> pure llp_events
+      <*> el llp_step
 
 erase_logic :: LLProg -> IO LLProg
 erase_logic p = do
