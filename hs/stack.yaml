@@ -18,9 +18,6 @@ extra-deps:
   - git: https://github.com/reach-sh/language-javascript.git
     commit: f1b4cd7d4a6502c385c64a5d0c80ce325202a48d
     # ^ from branch "reach-1"
-  - git: https://github.com/google/ormolu.git
-    commit: ffdf145bbdf917d54a3ef4951fc2655e35847ff0
-    # ^ from branch "gfork"
   # - github: brendanhay/amazonka
   #   commit: a4356591e151df86519b3bd2ccca1518c22e8b17
   #   # 0ccede621e56fb6f240e4850e205cde82d0e4a4b
