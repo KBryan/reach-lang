@@ -122,6 +122,10 @@ cd js && make build     # or `make b` to skip react-runner
 # Compile an example with a locally built compiler (no Docker)
 REACH_DOCKER=0 ./reach compile examples/argz/index.rsh
 
+# Verified-Solidity mode: ETH-only compile emitting .sol + .abi.json + .verify.json
+# (also: `reachc --sol`, `scripts/reach-sol`, `cd hs && make reachc-dist`)
+REACH_DOCKER=0 ./reach sol examples/verified-solidity/index.rsh
+
 # Docs site (requires Docker); serves at http://localhost:8080
 cd docs && make build && make serve-up
 
