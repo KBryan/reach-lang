@@ -73,6 +73,7 @@ validation:
 
 run:
   compile-example: "./reach compile examples/argz/index.rsh"
+  compile-sol-example: "REACH_DOCKER=0 ./reach sol examples/verified-solidity/index.rsh"  # verified-Solidity mode: emits .sol + .abi.json + .verify.json, ETH connector only
   docs-build: "cd docs && make build"   # Docker required
   docs-serve: "cd docs && make serve-up"  # serves at http://localhost:8080
   docker-images: "make"                 # routine-build: builds all reachsh/* Docker images
