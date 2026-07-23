@@ -2,10 +2,16 @@
 {-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
+-- scotty 0.20 deprecates param/raise in favor of source-specific accessors;
+-- param's capture->form->query fall-through is relied on here, so keep the
+-- deprecated API rather than guess a single source per call site.
+{-# OPTIONS_GHC -Wno-deprecations #-}
 
 module Reach.Simulator.Server where
 
 import Control.Concurrent.STM
+import Control.Monad
+import Control.Monad.IO.Unlift (MonadUnliftIO)
 import Control.Monad.Reader
 import Data.Aeson (FromJSON, ToJSON, decode)
 import qualified Data.ByteString.Lazy as LB
@@ -32,7 +38,7 @@ instance Default Session where
   def = initSession
 
 newtype WebM a = WebM {runWebM :: ReaderT (TVar Session) IO a}
-  deriving newtype (Applicative, Functor, Monad, MonadIO, MonadReader (TVar Session))
+  deriving newtype (Applicative, Functor, Monad, MonadIO, MonadReader (TVar Session), MonadUnliftIO)
 
 webM :: MonadTrans t => WebM a -> t WebM a
 webM = lift
@@ -600,7 +606,7 @@ startServer p srcTxt = do
   putStrLn "Starting Sim Server..."
   scottyT portNumber runActionToIO (app p srcTxt sg)
 
-setHeaders :: ActionT Text WebM ()
+setHeaders :: ActionT WebM ()
 setHeaders = do
   setHeader "Access-Control-Allow-Origin" "*"
   setHeader "Access-Control-Allow-Credentials" "true"
@@ -618,7 +624,7 @@ formatError (msid, mloc, e) = do
     <> show e
     <> "\n"
 
-caseTypes :: (Integer -> Integer -> C.DLVal -> WebM a) -> Integer -> Integer -> String -> ActionT Text WebM a
+caseTypes :: (Integer -> Integer -> C.DLVal -> WebM a) -> Integer -> Integer -> String -> ActionT WebM a
 caseTypes f s a = \case
   "number" -> do
     v :: Integer <- param "data"
@@ -656,7 +662,7 @@ caseTypes f s a = \case
     webM $ f s a v
   _ -> possible "Unexpected value type"
 
-raiseError :: Bool -> ActionT Text WebM ()
+raiseError :: Bool -> ActionT WebM ()
 raiseError = \case
   True -> json ("OK" :: String)
   False -> do
@@ -665,7 +671,7 @@ raiseError = \case
       (e : _) -> raise $ s2lt $ formatError e
       [] -> raise "An impossible error has occurred."
 
-app :: LLProg -> String -> DotGraph -> ScottyT Text WebM ()
+app :: LLProg -> String -> DotGraph -> ScottyT WebM ()
 app p srcTxt dg = do
   middleware logStdoutDev
 

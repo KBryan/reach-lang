@@ -4378,7 +4378,7 @@ evalPrim p sargs =
       at <- withAt id
       hs <- mustBeBytes =<< one_arg
       let hsNoPrefix = B.drop 2 hs
-      bs <- either (const $ expect_ Err_BytesFromHex_Invalid) return $ B16.decodeBase16 hsNoPrefix
+      bs <- either (const $ expect_ Err_BytesFromHex_Invalid) return $ B16.decodeBase16Untyped hsNoPrefix
       return (lvl, SLV_Bytes at bs)
     SLPrim_Contract_fromAddress -> do
       at <- withAt id

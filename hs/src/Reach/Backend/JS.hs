@@ -1,7 +1,9 @@
 module Reach.Backend.JS (backend_js) where
 
+import Control.Monad
 import Control.Monad.Reader
 import qualified Data.Aeson as AS
+import Data.Base16.Types (extractBase16)
 import qualified Data.ByteString.Base16 as B16
 import qualified Data.ByteString.Char8 as B
 import qualified Data.Foldable as Foldable
@@ -271,7 +273,7 @@ jsLargeArg = \case
 jsBytes :: B.ByteString -> Doc
 jsBytes b =
   case BS.decodeUtf8' b of
-    Left _ -> jsApply "stdlib.bytesFromHex" [dquotes $ "0x" <> pretty (B16.encodeBase16 b)]
+    Left _ -> jsApply "stdlib.bytesFromHex" [dquotes $ "0x" <> pretty (extractBase16 $ B16.encodeBase16 b)]
     Right _ -> jsString . bunpack $ b
 
 jsContractsAndVals :: [DLArg] -> App [Doc]

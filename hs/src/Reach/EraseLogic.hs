@@ -1,5 +1,6 @@
 module Reach.EraseLogic (erase_logic) where
 
+import Control.Monad
 import Control.Monad.Reader
 import Data.IORef
 import qualified Data.Map as M

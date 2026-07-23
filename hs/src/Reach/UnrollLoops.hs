@@ -1,5 +1,6 @@
 module Reach.UnrollLoops (UnrollWrapper (..), unrollLoops) where
 
+import Control.Monad
 import Control.Monad.Reader
 import qualified Data.ByteString as B
 import Data.Foldable

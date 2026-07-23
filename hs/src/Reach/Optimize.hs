@@ -1,5 +1,6 @@
 module Reach.Optimize (optimize_, optimize, opt_sim, Optimize) where
 
+import Control.Monad
 import Control.Monad.Reader
 import qualified Data.Aeson as AS
 import qualified Data.ByteString as B

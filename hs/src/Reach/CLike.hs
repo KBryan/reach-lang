@@ -5,6 +5,7 @@ module Reach.CLike
   )
 where
 
+import Control.Monad
 import Control.Monad.Reader
 import Data.IORef
 import qualified Data.Map.Strict as M

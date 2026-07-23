@@ -3,6 +3,7 @@ module Reach.Report (Report, startReport) where
 import Control.Concurrent
 import Control.Concurrent.Async
 import Control.Exception
+import Control.Monad
 import Control.Monad.Reader
 import Data.Aeson
 import Data.Time

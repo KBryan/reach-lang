@@ -2,7 +2,7 @@
 
 module Reach.Simulator.Core where
 
-import Control.Monad.Reader
+import Control.Monad
 import Data.Aeson
 import Data.Bits
 --import qualified Data.ByteString.Char8 as BS

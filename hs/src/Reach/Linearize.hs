@@ -1,5 +1,6 @@
 module Reach.Linearize (linearize, Error (..)) where
 
+import Control.Monad
 import Control.Monad.Reader
 import Data.IORef
 import Data.List.Extra

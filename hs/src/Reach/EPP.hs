@@ -1,5 +1,6 @@
 module Reach.EPP (epp, EPPError (..)) where
 
+import Control.Monad
 import Control.Monad.Reader
 import Data.Foldable
 import Data.IORef
