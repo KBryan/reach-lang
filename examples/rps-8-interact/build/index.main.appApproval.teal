@@ -54,7 +54,7 @@ callsub l2_LF_timeCheck
 load 19 // wager/305
 callsub l3_LF_checkTxn_False
 // ^ CheckPay
-// at ./index.rsh:49:9:dot
+// at ./examples/rps-8-interact/index.rsh:49:9:dot
 global Round
 load 18 // deadline/306
 +
@@ -136,7 +136,7 @@ assert
 load 19 // wager/305
 callsub l3_LF_checkTxn_False
 // ^ CheckPay
-// at ./index.rsh:56:7:dot
+// at ./examples/rps-8-interact/index.rsh:56:7:dot
 int 1
 global Round
 load 19 // wager/305
@@ -246,7 +246,7 @@ txn Sender
 ==
 assert
 // ^ Claim: sender correct
-// at ./index.rsh:69:11:dot
+// at ./examples/rps-8-interact/index.rsh:69:11:dot
 global Round
 load 18 // deadline/306
 +
@@ -306,7 +306,7 @@ txn Sender
 assert
 // ^ Claim: sender correct
 // at reach standard library:197:11:dot
-// at ./index.rsh:70:53:application call to "closeTo" (defined at: reach standard library:195:8:function exp)
+// at ./examples/rps-8-interact/index.rsh:70:53:application call to "closeTo" (defined at: reach standard library:195:8:function exp)
 load 14 // netBalance/334
 // resource: R_Account
 load 15 // Bob/321
@@ -346,7 +346,7 @@ txn Sender
 ==
 assert
 // ^ Claim: sender correct
-// at ./index.rsh:77:9:dot
+// at ./examples/rps-8-interact/index.rsh:77:9:dot
 global Round
 load 18 // deadline/306
 +
@@ -406,7 +406,7 @@ txn Sender
 assert
 // ^ Claim: sender correct
 // at reach standard library:197:11:dot
-// at ./index.rsh:78:53:application call to "closeTo" (defined at: reach standard library:195:8:function exp)
+// at ./examples/rps-8-interact/index.rsh:78:53:application call to "closeTo" (defined at: reach standard library:195:8:function exp)
 load 14 // netBalance/334
 // resource: R_Account
 load 16 // Alice/304
@@ -453,7 +453,7 @@ txn Sender
 ==
 assert
 // ^ Claim: sender correct
-// at ./index.rsh:85:11:dot
+// at ./examples/rps-8-interact/index.rsh:85:11:dot
 load 17 // commitAlice/358
 load 22 // saltAlice/389
 itob
@@ -465,7 +465,7 @@ sha256
 assert
 // ^ Claim
 // at reach standard library:69:17:application
-// at ./index.rsh:87:20:application call to "checkCommitment" (defined at: reach standard library:68:8:function exp)
+// at ./examples/rps-8-interact/index.rsh:87:20:application call to "checkCommitment" (defined at: reach standard library:68:8:function exp)
 load 21 // handAlice/390
 int 4
 load 12 // handBob/374
@@ -508,7 +508,7 @@ txn Sender
 assert
 // ^ Claim: sender correct
 // at reach standard library:197:11:dot
-// at ./index.rsh:86:53:application call to "closeTo" (defined at: reach standard library:195:8:function exp)
+// at ./examples/rps-8-interact/index.rsh:86:53:application call to "closeTo" (defined at: reach standard library:195:8:function exp)
 load 14 // netBalance/334
 // resource: R_Account
 load 15 // Bob/321
