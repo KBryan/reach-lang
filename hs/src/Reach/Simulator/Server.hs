@@ -1,11 +1,11 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DerivingStrategies #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 -- scotty 0.20 deprecates param/raise in favor of source-specific accessors;
 -- param's capture->form->query fall-through is relied on here, so keep the
 -- deprecated API rather than guess a single source per call site.
 {-# OPTIONS_GHC -Wno-deprecations #-}
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 
 module Reach.Simulator.Server where
 
