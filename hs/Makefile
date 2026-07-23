@@ -132,14 +132,16 @@ hs-deps: expand
 hs-doc: hs-build
 	stack haddock --fast
 
+# EverestUtil.hs is excluded from formatting: its #ifdef branches split a
+# single expression, which ormolu's CPP masking can never parse.
 .PHONY: hs-format
 hs-format: expand
-	stack build ormolu
-	stack exec -- ormolu \
+	stack --stack-yaml ormolu-tool/stack.yaml build ormolu
+	stack --stack-yaml ormolu-tool/stack.yaml exec -- ormolu \
 	  --ghc-opt -XBangPatterns \
 	  --ghc-opt -XCPP \
 	  --ghc-opt -XTypeApplications \
-	  --mode inplace $$(find . -name '*.hs' | grep -v '.mo')
+	  --mode inplace $$(find . -name '*.hs' | grep -v '.mo' | grep -v 'EverestUtil')
 
 define w
 ghcid -c 'stack ghci $(MEVEREST) --main-is=reach:$(1)'

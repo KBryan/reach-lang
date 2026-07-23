@@ -43,7 +43,7 @@ import GHC.Generics
 import qualified NeatInterpolation as N
 import Network.HTTP.Simple
 import Options.Applicative
-import Options.Applicative.Help.Pretty (text, (<$$>))
+import Options.Applicative.Help.Pretty (Doc, pretty, (.$.))
 import Reach.CommandLine
 import Reach.Report
 import Reach.Util
@@ -63,6 +63,11 @@ import Text.Parsec.Language
 import Text.ParserCombinators.Parsec.Combinator (count)
 import Text.ParserCombinators.Parsec.Token
 import Text.Pretty.Simple
+
+-- optparse-applicative >= 0.18 dropped ansi-wl-pprint's monomorphic `text`;
+-- `pretty` alone is ambiguous under OverloadedStrings, so pin the type here.
+text :: String -> Doc
+text = pretty
 
 onlyEverest :: String -> String
 onlyEverest x = x <> me
@@ -977,11 +982,11 @@ clean = command "clean" . info f $ fullDesc <> desc <> fdoc
     fdoc =
       footerDoc . Just $
         text "MODULE is \"index\" by default"
-          <$$> text "IDENT  is \"main\"  by default"
-          <$$> text ""
-          <$$> text "If:"
-          <$$> text " * MODULE is a directory then `cd $MODULE && rm -f \"build/index.$IDENT.mjs\";"
-          <$$> text " * MODULE is <something-else> then `rm -f \"build/$MODULE.$IDENT.mjs\""
+          .$. text "IDENT  is \"main\"  by default"
+          .$. text ""
+          .$. text "If:"
+          .$. text " * MODULE is a directory then `cd $MODULE && rm -f \"build/index.$IDENT.mjs\";"
+          .$. text " * MODULE is <something-else> then `rm -f \"build/$MODULE.$IDENT.mjs\""
     go m' i = do
       let m = esc' m'
       script $ write [N.text|
@@ -1415,7 +1420,7 @@ rpcRun = command "rpc-run" $ info f $ fullDesc <> desc <> fdoc <> noIntersperse
     fdoc =
       footerDoc . Just $
         text "Example:"
-          <$$> text " $ reach rpc-run python3 -u ./index.py"
+          .$. text " $ reach rpc-run python3 -u ./index.py"
     f =
       go <$> strArgument (metavar "EXECUTABLE")
         <*> manyArgs "EXECUTABLE"
