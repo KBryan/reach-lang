@@ -113,6 +113,29 @@ hs-test-xml: hs-build
 hs-test-accept: hs-build
 	stack test --fast $(MEVEREST) --test-arguments '+RTS -N -RTS --accept $(HS_TEST_ARGS)'
 
+# Standalone distribution of the verified-Solidity compiler: reachc plus the
+# reach-sol wrapper.  Runtime prerequisites (z3, solc) are NOT bundled; their
+# pinned versions come from $(ROOT)/DEPS and are recorded in the README.
+.PHONY: reachc-dist
+reachc-dist: hs-build
+	rm -rf dist-reachc reachc-dist.tar.gz
+	mkdir -p dist-reachc
+	cp "$$(stack path --local-install-root)/bin/reachc" dist-reachc/
+	cp $(ROOT)/scripts/reach-sol dist-reachc/
+	printf '%s\n' \
+	  '# reachc standalone distribution' \
+	  '' \
+	  'Verified-Solidity compiler: `reach-sol [-o OUTDIR] SRC.rsh` (or `reachc --sol`).' \
+	  'Emits `<src>.<app>.sol`, `<src>.<app>.abi.json`, and `<src>.<app>.verify.json`.' \
+	  '' \
+	  'Runtime prerequisites (must be on PATH):' \
+	  '- solc $(SOLC_VERSION)' \
+	  '- z3 $(Z3_VERSION)' \
+	  > dist-reachc/README.md
+	tar -czf reachc-dist.tar.gz -C dist-reachc .
+	rm -rf dist-reachc
+	@echo "Wrote reachc-dist.tar.gz"
+
 .PHONY: hs-deps
 hs-deps: expand
 	stack setup
